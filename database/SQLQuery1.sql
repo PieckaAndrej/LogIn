@@ -1,0 +1,71 @@
+USE MASTER
+
+DROP DATABASE LogInDB
+
+GO
+
+CREATE DATABASE LogInDB
+
+GO
+
+USE LogInDB
+
+CREATE TABLE dbo.Account (
+	email VARCHAR(320) NOT NULL,
+	username NVARCHAR(30) NOT NULL,
+	id INT IDENTITY(1, 1) NOT NULL  PRIMARY KEY,
+)
+
+GO
+
+CREATE TABLE dbo.[Password] (
+	passwordId INT NOT NULL PRIMARY KEY,
+	passwordHash VARCHAR(128),
+	serverSalt VARCHAR(128),
+	clientSalt VARCHAR(128),
+	CONSTRAINT PasswordEmailFK
+	FOREIGN KEY (passwordId) REFERENCES Account(id)
+	ON DELETE CASCADE,
+)
+
+GO
+
+CREATE TABLE dbo.Country (
+	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	iso char(2) NOT NULL,
+	name varchar(80) NOT NULL,
+	nicename varchar(80) NOT NULL,
+	iso3 char(3) DEFAULT NULL,
+	numcode smallint DEFAULT NULL,
+	phonecode int NOT NULL,
+)
+
+GO
+
+CREATE TABLE dbo.Phone (
+	id INT NOT NULL PRIMARY KEY,
+	countryId INT NOT NULL,
+	phone VARCHAR(15) NOT NULL,
+	CONSTRAINT PhoneEmailFK
+	FOREIGN KEY (id) REFERENCES Account(id)
+	ON DELETE CASCADE,
+	CONSTRAINT PhoneCountryFK
+	FOREIGN KEY (countryId) REFERENCES Country(id)
+	ON DELETE CASCADE,
+)
+
+GO
+
+CREATE TABLE dbo.Info (
+	id INT NOT NULL PRIMARY KEY,
+	firstName NVARCHAR(64) NOT NULL,
+	middleName NVARCHAR(64) NULL,
+	lastName NVARCHAR(64) NOT NULL,
+	countryId INT NULL,
+	CONSTRAINT InfoCountryFK
+	FOREIGN KEY (countryId) REFERENCES Country(id)
+	ON DELETE SET NULL,
+	CONSTRAINT InfoEmailFK
+	FOREIGN KEY (id) REFERENCES Account(id)
+	ON DELETE CASCADE,
+)

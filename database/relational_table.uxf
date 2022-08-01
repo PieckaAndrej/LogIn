@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>200</y>
+      <x>150</x>
+      <y>130</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -16,19 +16,19 @@ Account</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>540</y>
+      <x>310</x>
+      <y>130</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>email</panel_attributes>
+    <panel_attributes>_email_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>240</y>
+      <x>530</x>
+      <y>130</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -38,8 +38,8 @@ Account</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>550</x>
-      <y>450</y>
+      <x>530</x>
+      <y>220</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -49,19 +49,19 @@ Account</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>450</y>
+      <x>420</x>
+      <y>220</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>countryCode</panel_attributes>
+    <panel_attributes>coundryId</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>990</x>
-      <y>240</y>
+      <x>860</x>
+      <y>380</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -71,30 +71,30 @@ Account</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>550</x>
-      <y>350</y>
+      <x>310</x>
+      <y>470</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>city</panel_attributes>
+    <panel_attributes>id</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>240</y>
+      <x>750</x>
+      <y>380</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>country</panel_attributes>
+    <panel_attributes>countryId</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>770</x>
-      <y>240</y>
+      <x>640</x>
+      <y>380</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -102,99 +102,44 @@ Account</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>330</x>
-      <y>350</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>_zipcode_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>440</x>
-      <y>350</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>_country_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>260</y>
+      <x>350</x>
+      <y>400</y>
       <w>470</w>
-      <h>110</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;30.0;450.0;30.0;450.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>480</x>
-      <y>260</y>
-      <w>470</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;50.0;450.0;50.0;450.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;30.0;450.0;30.0;450.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>310</y>
+      <x>150</x>
+      <y>470</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>bg=red
-City</panel_attributes>
+Country</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>550</x>
-      <y>240</y>
+      <x>420</x>
+      <y>290</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>password</panel_attributes>
+    <panel_attributes>passwordHash</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>240</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>salt</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>330</x>
-      <y>240</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>_id_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>170</x>
-      <y>410</y>
+      <x>150</x>
+      <y>220</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -205,8 +150,8 @@ Phone</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>330</x>
-      <y>450</y>
+      <x>310</x>
+      <y>220</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -216,19 +161,53 @@ Phone</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>290</x>
-      <y>240</y>
-      <w>60</w>
-      <h>240</h>
+      <x>270</x>
+      <y>150</y>
+      <w>220</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>40.0;220.0;10.0;220.0;10.0;10.0;40.0;10.0</additional_attributes>
+    <additional_attributes>40.0;80.0;10.0;80.0;10.0;40.0;200.0;40.0;200.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>330</x>
-      <y>540</y>
+      <x>420</x>
+      <y>380</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>firstName</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>380</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lastName</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>150</x>
+      <y>290</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>bg=red
+Password</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>290</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -238,8 +217,52 @@ Phone</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>290</x>
-      <y>450</y>
+      <x>270</x>
+      <y>220</y>
+      <w>60</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>40.0;80.0;10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>290</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>serverSalt</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>290</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>clientSalt</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>380</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>_id_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>290</y>
       <w>60</w>
       <h>120</h>
     </coordinates>
@@ -249,13 +272,101 @@ Phone</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>500</y>
+      <x>150</x>
+      <y>380</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>bg=red
-Email</panel_attributes>
+Info</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>470</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>iso</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>530</x>
+      <y>470</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>name</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>470</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>niceName</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>470</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>iso3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>860</x>
+      <y>470</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>numCode</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>970</x>
+      <y>470</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>phoneCode</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>370</x>
+      <y>240</y>
+      <w>630</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;210.0;610.0;210.0;610.0;30.0;100.0;30.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>420</x>
+      <y>130</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>id</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
