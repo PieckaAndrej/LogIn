@@ -1,26 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
+import {useState} from 'react';
+import {postAccount} from './Api';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
+
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+
+		postAccount({email: email, username: username});
+	}
+
+	return (
+		<div className="App">
+			<form onSubmit={handleSubmit}>
+				<div>
+					<p>Name</p>
+					<input 
+						type="name" 
+						value={username}
+						onChange={value => setUsername(value.target.value)}
+					/>
+				</div>
+				<div>
+					<p>Email</p>
+					<input 
+						type="email" 
+						value={email}
+						onChange={value => setEmail(value.target.value)}
+					/>
+				</div>
+				<input type="submit" value="Register"/>
+			</form>
+		</div>
+	);
 }
 
 export default App;
