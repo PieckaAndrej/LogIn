@@ -1,40 +1,22 @@
-import React from 'react';
-import {useState} from 'react';
-import {postAccount} from './Api';
-import './App.css';
+import {CssBaseline} from '@mui/material';
+import {ThemeProvider} from '@mui/material/styles';
+import './App.scss';
+import Login from './components/Login';
+import Navbar from './components/Navbar';
+import Register from './components/Register';
+import {lightTheme} from './customTheme';
 
-function App() {
+const App = () => {
 
-	const [username, setUsername] = useState("");
-	const [email, setEmail] = useState("");
-
-	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-
-		postAccount({email: email, username: username});
-	}
+	const firstLogin: boolean = localStorage.getItem("firstLogin") === null;
 
 	return (
 		<div className="App">
-			<form onSubmit={handleSubmit}>
-				<div>
-					<p>Name</p>
-					<input 
-						type="name" 
-						value={username}
-						onChange={value => setUsername(value.target.value)}
-					/>
-				</div>
-				<div>
-					<p>Email</p>
-					<input 
-						type="email" 
-						value={email}
-						onChange={value => setEmail(value.target.value)}
-					/>
-				</div>
-				<input type="submit" value="Register"/>
-			</form>
+			<ThemeProvider theme={lightTheme}>
+				<CssBaseline enableColorScheme/>
+				<Navbar />
+				{firstLogin ? <Register /> : <Login />}
+			</ThemeProvider>
 		</div>
 	);
 }
