@@ -1,12 +1,13 @@
 import { createTheme } from "@mui/material/styles";
+import variables from "./variables.module.scss"
 
 export const lightTheme = createTheme({
   palette: {
     primary: {
-      main: "#a099e7",
+      main: variables.primary,
     },
     secondary: {
-      main: "#e7a099",
+      main: variables.secondary,
     },
   },
 });

@@ -1,0 +1,12 @@
+<svg width="600" height="150" viewBox="0 0 600 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="hills">
+<path id="background" d="M0 150C31.479 135.214 74 112.5 103 65C142.5 117.5 173.634 150 200.5 150C227.366 150 409.231 50.0021 431.212 0C474.862 61.085 537.32 109.808 600 150H200.5H0Z" fill="#D2DAF8"/>
+<path id="foreground" d="M0 149.999C31.479 135.213 69.5 125 103.5 80.5C143 132 174.216 146.987 200 149.999C226.567 148.833 399.338 73.2676 432.5 20C476.15 81.0849 537.32 109.807 600 149.999H200H0Z" fill="url(#paint0_linear_2_4)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_2_4" x1="300" y1="21.2324" x2="300" y2="149.999" gradientUnits="userSpaceOnUse">
+<stop stop-color="#A099E7"/>
+<stop offset="1" stop-color="#A099E7" stop-opacity="0.35"/>
+</linearGradient>
+</defs>
+</svg>

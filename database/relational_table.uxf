@@ -38,97 +38,8 @@ Account</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>520</x>
-      <y>230</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>phone</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
       <x>410</x>
-      <y>230</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>coundryId</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>850</x>
-      <y>390</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>adress</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>300</x>
-      <y>480</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>id</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>740</x>
-      <y>390</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>countryId</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>630</x>
-      <y>390</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>zipcode</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>340</x>
-      <y>410</y>
-      <w>470</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;70.0;10.0;30.0;450.0;30.0;450.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>140</x>
-      <y>480</y>
-      <w>110</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>bg=red
-Country</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>410</x>
-      <y>310</y>
+      <y>200</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -138,42 +49,8 @@ Country</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>140</x>
-      <y>230</y>
-      <w>110</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>bg=red
-Phone</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>300</x>
-      <y>230</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>_id_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>260</x>
-      <y>160</y>
-      <w>110</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>40.0;80.0;10.0;80.0;10.0;40.0;90.0;40.0;90.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>410</x>
-      <y>390</y>
+      <x>740</x>
+      <y>140</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -183,8 +60,8 @@ Phone</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>520</x>
-      <y>390</y>
+      <x>850</x>
+      <y>140</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -195,7 +72,7 @@ Phone</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>140</x>
-      <y>310</y>
+      <y>200</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -207,7 +84,7 @@ Password</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>300</x>
-      <y>310</y>
+      <y>200</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -218,18 +95,18 @@ Password</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>260</x>
-      <y>230</y>
+      <y>140</y>
       <w>60</w>
-      <h>110</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>40.0;90.0;10.0;90.0;10.0;10.0</additional_attributes>
+    <additional_attributes>40.0;70.0;10.0;70.0;10.0;10.0;40.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>520</x>
-      <y>310</y>
+      <y>200</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -240,123 +117,12 @@ Password</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>630</x>
-      <y>310</y>
+      <y>200</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>clientSalt</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>300</x>
-      <y>390</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>_id_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>260</x>
-      <y>310</y>
-      <w>60</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>40.0;90.0;10.0;90.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>140</x>
-      <y>390</y>
-      <w>110</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>bg=red
-Info</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>410</x>
-      <y>480</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>iso</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>520</x>
-      <y>480</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>name</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>630</x>
-      <y>480</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>niceName</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>740</x>
-      <y>480</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>iso3</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>850</x>
-      <y>480</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>numCode</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>960</x>
-      <y>480</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>phoneCode</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>360</x>
-      <y>250</y>
-      <w>630</w>
-      <h>250</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;230.0;10.0;210.0;610.0;210.0;610.0;30.0;100.0;30.0;100.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>

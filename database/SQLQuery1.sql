@@ -13,8 +13,10 @@ USE LogInDB
 CREATE TABLE dbo.Account (
 	id BINARY(16) NOT NULL PRIMARY KEY,
 	email VARCHAR(320) NOT NULL UNIQUE,
-	username NVARCHAR(30) NOT NULL,
+	username NVARCHAR(30) NOT NULL UNIQUE,
 	creationDate DATETIME NOT NULL,
+	firstName NVARCHAR(64) NULL,
+	lastName NVARCHAR(64) NULL
 )
 
 GO
@@ -26,46 +28,5 @@ CREATE TABLE dbo.[Password] (
 	clientSalt VARCHAR(128),
 	CONSTRAINT PasswordEmailFK
 	FOREIGN KEY (passwordId) REFERENCES Account(id)
-	ON DELETE CASCADE,
-)
-
-GO
-
-CREATE TABLE dbo.Country (
-	id int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-	iso char(2) NOT NULL,
-	name varchar(80) NOT NULL,
-	nicename varchar(80) NOT NULL,
-	iso3 char(3) DEFAULT NULL,
-	numcode smallint DEFAULT NULL,
-	phonecode int NOT NULL,
-)
-
-GO
-
-CREATE TABLE dbo.Phone (
-	id BINARY(16) NOT NULL PRIMARY KEY,
-	countryId INT NOT NULL,
-	phone VARCHAR(15) NOT NULL,
-	CONSTRAINT PhoneEmailFK
-	FOREIGN KEY (id) REFERENCES Account(id)
-	ON DELETE CASCADE,
-	CONSTRAINT PhoneCountryFK
-	FOREIGN KEY (countryId) REFERENCES Country(id)
-	ON DELETE CASCADE,
-)
-
-GO
-
-CREATE TABLE dbo.Info (
-	id BINARY(16) NOT NULL PRIMARY KEY,
-	firstName NVARCHAR(64) NULL,
-	lastName NVARCHAR(64) NULL,
-	countryId INT NULL,
-	CONSTRAINT InfoCountryFK
-	FOREIGN KEY (countryId) REFERENCES Country(id)
-	ON DELETE SET NULL,
-	CONSTRAINT InfoEmailFK
-	FOREIGN KEY (id) REFERENCES Account(id)
 	ON DELETE CASCADE,
 )

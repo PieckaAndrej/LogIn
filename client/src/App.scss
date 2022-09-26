@@ -1,16 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand:wght@300&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand:wght@300&family=Roboto:wght@300;400&display=swap');
+@import './variables.module.scss';
 
 $navbarHeight: 60px;
-$backgroundColor: white;
 
 /*
  * General
  */
 body {
 	background-color: $backgroundColor;
-	background-image: url(./images/hills.png);
-	background-repeat: no-repeat;
-	background-position: bottom;
+}
+
+.link {
+  color: $secondaryColor;
+	transition: 0.2s;
+}
+
+.link:hover {
+   color: darken($color: $secondaryColor, $amount: 15); 
 }
 
 .App {
@@ -23,25 +29,40 @@ body {
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
+	padding-top: $navbarHeight;
+	background-image: url(./images/hills.svg);
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: auto 70%; 
 }
 
 .register-card {
+	border-top: 5px solid $primaryColor;
+	width: 90%;
+	max-width: 450px;
+}
+
+.register-card-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	max-width: min-content;
-	min-width: 400px;
 	gap: 20px;
 }
 
 .navbar {
+	z-index: 1000;
 	position: fixed;
+	top: 0;
 	display: flex;
 	align-items: center;
 	padding: 10px;
 	color: #a099e7;
 	width: 100%;
 	font-family: "Quicksand", sans-serif;
+}
+
+.register-password-icon {
+	font-variation-settings: "wght" 200, "opsz" 24;
 }
 
 .navbar-icon {
