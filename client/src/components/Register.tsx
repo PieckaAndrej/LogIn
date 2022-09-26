@@ -236,7 +236,7 @@ const Register = () => {
 														onClick={() => handleClickShowPassword("repeatPassword", !showPassword.repeatPassword)}
 														edge="end"
 													>
-														{showPassword.repeatPassword ? 
+														{showPassword.password ? 
 															<Icon className="register-password-icon material-symbols-outlined">
 																visibility
 															</Icon>
