@@ -5,7 +5,7 @@ public class AccountDataColumnNames {
 	
 	public static final String ID = "id";
 	
-	public static final String CREATION_DATE = "creation_date";
+	public static final String CREATION_DATE = "creationDate";
 	
 	public static final String EMAIL = "email";
 	

@@ -46,12 +46,10 @@ public class PasswordDataAccessService implements PasswordDaoIF {
 	public int insertPassword(Password password, Connection con) throws DatabaseException {
 		int retVal = 0;
 		
-		String sql = new StringBuilder().append("INSERT Account (")
-				.append(PasswordDataColumnNames.ID)
+		String sql = new StringBuilder().append("INSERT Password (")
+				.append(PasswordDataColumnNames.ID).append(", ")
 				.append(PasswordDataColumnNames.PASSWORD_HASH)
-				.append(PasswordDataColumnNames.SERVER_SALT)
-				.append(PasswordDataColumnNames.CLIENT_SALT)
-        		.append(")VALUES (?, ?, ?, ?);").toString();
+        		.append(") VALUES (?, ?);").toString();
 		
 		try {
 			PreparedStatement statement = con.prepareStatement(sql);
@@ -60,8 +58,6 @@ public class PasswordDataAccessService implements PasswordDaoIF {
 				statement.setBytes(1, HexUtils.fromHexString(password.getAccount().getId()
 						.toString().replace("-", "")));
 				statement.setString(2, password.getPasswordHash());
-				statement.setString(3, password.getServerSalt());
-				statement.setString(4, password.getClientSalt());
 		            
 				int rowsAffected = statement.executeUpdate();
 				System.out.println(rowsAffected + " row(s) inserted");

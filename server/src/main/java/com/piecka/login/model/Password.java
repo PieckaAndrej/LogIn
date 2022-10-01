@@ -2,13 +2,10 @@ package com.piecka.login.model;
 
 public class Password {
 	private String passwordHash;
-	private String serverSalt;
-	private String clientSalt;
 	private Account account;
 	
-	public Password(String passwordHash, String clientSalt) {
+	public Password(String passwordHash) {
 		this.passwordHash = passwordHash;
-		this.clientSalt = clientSalt;
 	}
 	
 	/**
@@ -19,38 +16,10 @@ public class Password {
 	}
 	
 	/**
-	 * @return the serverSalt
-	 */
-	public String getServerSalt() {
-		return serverSalt;
-	}
-	
-	/**
-	 * @return the clientSalt
-	 */
-	public String getClientSalt() {
-		return clientSalt;
-	}
-	
-	/**
 	 * @param passwordHash the passwordHash to set
 	 */
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
-	}
-	
-	/**
-	 * @param serverSalt the serverSalt to set
-	 */
-	public void setServerSalt(String serverSalt) {
-		this.serverSalt = serverSalt;
-	}
-	
-	/**
-	 * @param clientSalt the clientSalt to set
-	 */
-	public void setClientSalt(String clientSalt) {
-		this.clientSalt = clientSalt;
 	}
 
 	/**

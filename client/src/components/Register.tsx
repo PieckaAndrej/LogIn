@@ -18,8 +18,7 @@ import {Box} from "@mui/system";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import RegisterInfo from "../interfaces/RegisterInfo";
-import { hashPassword } from "../security";
-import { postAccount } from "../Api";
+import { isEmailAvailable, isUsernameAvailable, postAccount } from "../Api";
 
 
 const Register = () => {
@@ -44,6 +43,7 @@ const Register = () => {
 	const [error, setError] = useState({
 		emailTaken: false,
 		usernameTaken: false,
+		shortUsername: false,
 		invalidPassword: false,
 		differentPassword: false,
 		terms: false
@@ -78,11 +78,41 @@ const Register = () => {
 
 	// Check if email is not used already
 	useEffect(() => {
+		const checkEmail = async () => {
+			let response = await isEmailAvailable(info.email);
+
+			if (response.data == error.emailTaken) {
+				handleError("emailTaken", !response.data);
+			}
+		}
+
+		if (info.email != "") {
+			checkEmail();
+		}
 
 	}, [info.email])
 
+	console.log("render")
 	// Check if username is not used already
 	useEffect(() => {
+		const checkUsername = async () => {
+			if (info.username.length < 3) {
+				handleError("shortUsername", true);
+
+			} else {
+				let response = await isUsernameAvailable(info.username);
+
+				handleError("shortUsername", false);
+
+				if (response.data == error.usernameTaken) {
+					handleError("usernameTaken", !response.data);
+				}
+			}
+		}
+
+		if (info.username != "") {
+			checkUsername();
+		}
 
 	}, [info.username])
 
@@ -110,37 +140,29 @@ const Register = () => {
 		}
 
 		if (!errorHappened) {
-			const salt = new Uint8Array(16);
-			window.crypto.getRandomValues(salt);
-
-			const passwordHash = await hashPassword(info.password, salt)
-
 			postAccount({
 				firstName: info.firstName,
 				lastName: info.lastName,
 				username: info.username,
 				email: info.email,
-				passwordHash: passwordHash,
-				clientSalt: salt.toString(),
+				password: info.password,
 			})
 		}
 	}
 
-	console.log("render");
-
 	return (
-		<Box className="register">
+		<Box className="form register">
 			<Typography variant="h4" sx={{ color: theme.palette.primary.main, fontFamily: "'Quicksand', sans-serif" }}>
 				Register
 			</Typography>
-			<Card sx={{ overflowY: "auto" }} className="register-card">
+			<Card sx={{ overflowY: "auto" }} className="card">
 				<CardContent>
 					<form onSubmit={handleRegister}>
-						<Box className="register-card-container">
+						<Box className="card-container">
 							<Grid container spacing={2}>
 								<Grid item xs={6}>
 									<TextField 
-										id="givenName" 
+										autoComplete="given-name"
 										label="First name" 
 										variant="standard"
 										name="firstName"
@@ -151,7 +173,7 @@ const Register = () => {
 								</Grid>
 								<Grid item xs={6}>
 									<TextField 
-										id="familyName" 
+										autoComplete="family-name"
 										label="Last name" 
 										variant="standard"
 										name="lastName"
@@ -162,20 +184,22 @@ const Register = () => {
 								</Grid>
 								<Grid item xs={12}>
 									<TextField 
-										error={error.usernameTaken}
-										id="username" 
+										error={error.usernameTaken || error.shortUsername}
+										autoComplete="username"
 										label="Username" 
 										variant="standard"
 										name="username"
 										value={info.username}
 										onChange={(event) => handleChange(event)}
 										sx={{ minWidth: "100%" }}
+										helperText={error.usernameTaken ? "This username is already used" 
+										: error.shortUsername ? "Must be at least 3 characters" : ""}
 									/>
 								</Grid>
 								<Grid item xs={12}>
 									<TextField 
 										error={error.emailTaken}
-										id="email" 
+										autoComplete="email"
 										type="email"
 										label="Email" 
 										variant="standard"
@@ -183,13 +207,14 @@ const Register = () => {
 										value={info.email}
 										onChange={(event) => handleChange(event)}
 										sx={{ minWidth: "100%" }}
+										helperText={error.emailTaken ? "This email is already used" : ""}
 									/>
 								</Grid>
 								<Grid item xs={6}>
 									<FormControl variant="standard" sx={{ minWidth: "100%" }}>
 										<InputLabel htmlFor="password" error={error.invalidPassword}>Password</InputLabel>
 										<Input
-											id="password"
+											autoComplete="new-password"
 											name="password"
 											error={error.invalidPassword}
 											type={showPassword.password ? "text" : "password"} 
@@ -223,7 +248,7 @@ const Register = () => {
 									<FormControl variant="standard"sx={{ minWidth: "100%" }}>
 										<InputLabel htmlFor="passwordRepeat" error={error.differentPassword}>Repeat password</InputLabel>
 										<Input
-											id="passwordRepeat"
+											autoComplete="new-password"
 											name="repeatPassword"
 											error={error.differentPassword}
 											type={showPassword.repeatPassword ? "text" : "password"} 
@@ -236,7 +261,7 @@ const Register = () => {
 														onClick={() => handleClickShowPassword("repeatPassword", !showPassword.repeatPassword)}
 														edge="end"
 													>
-														{showPassword.password ? 
+														{showPassword.repeatPassword ? 
 															<Icon className="register-password-icon material-symbols-outlined">
 																visibility
 															</Icon>
@@ -259,7 +284,6 @@ const Register = () => {
 								sx={{ display: "flex",
 									alignItems: "center",
 								color: ( error.terms ? theme.palette.error.main : theme.palette.grey[500] ),
-								marginRight: "auto"
 								}}
 							>
 								<Checkbox 

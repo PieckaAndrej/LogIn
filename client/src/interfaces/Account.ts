@@ -3,6 +3,5 @@ export default interface Account {
   lastName: string;
 	username: string;
   email: string;
-  passwordHash: string;
-	clientSalt: string;
+  password: string;
 }

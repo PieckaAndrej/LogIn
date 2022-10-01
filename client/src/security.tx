@@ -1,3 +1,0 @@
-const hashPassword = (password: string) {
-	return await 
-}

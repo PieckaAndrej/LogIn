@@ -14,8 +14,10 @@ import org.springframework.web.server.ResponseStatusException;
 import com.piecka.login.exceptions.DatabaseException;
 import com.piecka.login.exceptions.DuplicateEmailException;
 import com.piecka.login.exceptions.DuplicateUsernameException;
+import com.piecka.login.exceptions.ShortPasswordException;
+import com.piecka.login.exceptions.ShortUsernameException;
 import com.piecka.login.model.Account;
-import com.piecka.login.model.Password;
+import com.piecka.login.model.RegisterAccount;
 import com.piecka.login.service.AccountService;
 
 @RestController
@@ -34,13 +36,15 @@ public class AccountController {
 	 * @return A response with an account
 	 */
 	@PostMapping(path = "/register")
-	public ResponseEntity<Account> addAccount(@RequestBody Account account, @RequestBody Password password) {
+	public ResponseEntity<Integer> addAccount(@RequestBody RegisterAccount registerAccount) {
+		int response = 0;
+		
 		try {
-			if (!(accountService.isEmailPresent(account.getEmail()) &&
-					accountService.isUsernamePresent(account.getUsername()))) {
+			if (!(accountService.isEmailPresent(registerAccount.getEmail()) &&
+					accountService.isUsernamePresent(registerAccount.getUsername()))) {
 				
 				try {
-					accountService.registerAccount(account, password);
+					response = accountService.registerAccount(registerAccount, registerAccount.getPassword());
 					
 				} catch (DuplicateEmailException dee) {
 					dee.printStackTrace();
@@ -49,6 +53,14 @@ public class AccountController {
 				} catch (DuplicateUsernameException due) {
 					due.printStackTrace();
 					throw new ResponseStatusException(HttpStatus.CONFLICT, "Username already exists");
+					
+				} catch (ShortUsernameException sue) {
+					sue.printStackTrace();
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username must be at least 3 characters");
+					
+				} catch (ShortPasswordException spe) {
+					spe.printStackTrace();
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password must be at least 8 characters");
 				}
 			}
 			
@@ -58,7 +70,14 @@ public class AccountController {
 					"Database error");
 		}
 		
-		return new ResponseEntity<>(account, HttpStatus.CREATED);
+		return new ResponseEntity<>(Integer.valueOf(response), HttpStatus.CREATED);
+	}
+	
+	@PostMapping(path= "/login/{id}")
+	public ResponseEntity<Account> logIn(@PathVariable("id") String id, @RequestBody String password) {
+		Account account = null;
+		
+		return new ResponseEntity<>(account, HttpStatus.CONTINUE);
 	}
 	
 	/**

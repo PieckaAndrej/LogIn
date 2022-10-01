@@ -26,13 +26,13 @@ public class AccountDataAccessService implements AccountDaoIF {
 		int retVal = 0;
 		
 		String sql = new StringBuilder().append("INSERT Account (")
-				.append(AccountDataColumnNames.EMAIL)
-				.append(AccountDataColumnNames.USERNAME)
-				.append(AccountDataColumnNames.ID)
-				.append(AccountDataColumnNames.CREATION_DATE)
-				.append(AccountDataColumnNames.FIRST_NAME)
+				.append(AccountDataColumnNames.EMAIL).append(", ")
+				.append(AccountDataColumnNames.USERNAME).append(", ")
+				.append(AccountDataColumnNames.ID).append(", ")
+				.append(AccountDataColumnNames.CREATION_DATE).append(", ")
+				.append(AccountDataColumnNames.FIRST_NAME).append(", ")
 				.append(AccountDataColumnNames.LAST_NAME)
-        		.append(")VALUES (?, ?, ?, ?, ?, ?);").toString();
+        		.append(") VALUES (?, ?, ?, ?, ?, ?);").toString();
 		
 		PasswordDataAccessService passwordDao = new PasswordDataAccessService();
 		
@@ -43,6 +43,7 @@ public class AccountDataAccessService implements AccountDaoIF {
 			con.setAutoCommit(false);
 			
 			try {
+				System.out.println(sql);
 				statement.setString(1, account.getEmail());
 				statement.setString(2, account.getUsername());
 				statement.setBytes(3, HexUtils.fromHexString(account.getId()
@@ -105,14 +106,13 @@ public class AccountDataAccessService implements AccountDaoIF {
 	private boolean isValuePresentInColumn(String value, String column) throws DatabaseException {
 		boolean retVal = false;
 		
-		String sql = new StringBuilder().append("SELECT * FROM ACCOUNT WHERE ? = ?;").toString();
+		String sql = new StringBuilder().append("SELECT * FROM Account WHERE " + column + " = ?;").toString();
 		
 		try {
 			Connection con = DriverManager.getConnection(DBConnection.CONNECTION_URL);
 			PreparedStatement statement = con.prepareStatement(sql);
 			
 			try {
-				statement.setString(1, column);
 				statement.setString(1, value);
 		            
 				ResultSet resultSet = statement.executeQuery();

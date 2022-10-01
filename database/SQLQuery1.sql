@@ -24,8 +24,6 @@ GO
 CREATE TABLE dbo.[Password] (
 	passwordId BINARY(16) NOT NULL PRIMARY KEY,
 	passwordHash VARCHAR(128),
-	serverSalt VARCHAR(128),
-	clientSalt VARCHAR(128),
 	CONSTRAINT PasswordEmailFK
 	FOREIGN KEY (passwordId) REFERENCES Account(id)
 	ON DELETE CASCADE,

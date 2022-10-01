@@ -23,26 +23,33 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 
-.register {
+.form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
 	padding-top: $navbarHeight;
+}
+
+.register {
 	background-image: url(./images/hills.svg);
 	background-repeat: no-repeat;
 	background-position: bottom;
 	background-size: auto 70%; 
 }
 
-.register-card {
+.register-password-icon {
+	font-variation-settings: "wght" 200, "opsz" 24;
+}
+
+.card {
 	border-top: 5px solid $primaryColor;
 	width: 90%;
 	max-width: 450px;
 }
 
-.register-card-container {
+.card-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -59,10 +66,6 @@ body {
 	color: #a099e7;
 	width: 100%;
 	font-family: "Quicksand", sans-serif;
-}
-
-.register-password-icon {
-	font-variation-settings: "wght" 200, "opsz" 24;
 }
 
 .navbar-icon {
