@@ -37,7 +37,7 @@ const Login = () => {
 	return (
 		<Box className="form login">
 			<Typography variant="h4" sx={{ color: theme.palette.primary.main, fontFamily: "'Quicksand', sans-serif" }}>
-				Login
+				Log in
 			</Typography>
 			<Card sx={{ overflowY: "auto" }} className="card">
 				<CardContent>
@@ -62,15 +62,15 @@ const Login = () => {
 								onChange={(event) => handleChange(event)}
 								sx={{ minWidth: "100%" }}
 							/>
-						</Box>
-						<Button variant="contained" type="submit" color="secondary">Login</Button>
-						<Box sx={{ display: "flex", alignItems: "center", gap: "5px", color: theme.palette.grey[500] }}>
-							<Typography sx={{ fontSize: "0.9rem" }}>
-								Don't have an account?
-							</Typography>
-							<Typography sx={{ fontSize: "0.9rem" }}>
-								<Link to="/register" className="link">Register</Link>
-							</Typography>
+							<Button variant="contained" type="submit" color="secondary">Login</Button>
+							<Box sx={{ display: "flex", alignItems: "center", gap: "5px", color: theme.palette.grey[500] }}>
+								<Typography sx={{ fontSize: "0.9rem" }}>
+									Don't have an account?
+								</Typography>
+								<Typography sx={{ fontSize: "0.9rem" }}>
+									<Link to="/register" className="link">Register</Link>
+								</Typography>
+							</Box>
 						</Box>
 					</form>
 				</CardContent>
