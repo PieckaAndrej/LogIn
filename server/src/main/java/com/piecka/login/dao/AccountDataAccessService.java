@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.function.Function;
 
 import org.apache.tomcat.util.buf.HexUtils;
 import org.springframework.stereotype.Repository;
@@ -46,8 +47,7 @@ public class AccountDataAccessService implements AccountDaoIF {
 				System.out.println(sql);
 				statement.setString(1, account.getEmail());
 				statement.setString(2, account.getUsername());
-				statement.setBytes(3, HexUtils.fromHexString(account.getId()
-						.toString().replace("-", "")));
+				statement.setBytes(3, Utils.convertUUIDToBytes(account.getId()));
 				statement.setTimestamp(4, Timestamp.valueOf(creationDateTime));
 				statement.setString(5, account.getFirstName());
 				statement.setString(6, account.getLastName());
@@ -95,18 +95,49 @@ public class AccountDataAccessService implements AccountDaoIF {
 
 	@Override
 	public boolean isEmailPresent(String email) throws DatabaseException {
-		return isValuePresentInColumn(email, AccountDataColumnNames.EMAIL);
+		boolean retVal = false;
+		
+		retVal = performQuery(email, AccountDataColumnNames.EMAIL, rs -> {
+			boolean next = false;
+			
+			try {
+				next = rs.next();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return next;
+		});
+		
+		return retVal;
 	}
 
 	@Override
 	public boolean isUsernamePresent(String username) throws DatabaseException {
-		return isValuePresentInColumn(username, AccountDataColumnNames.USERNAME);
+		boolean retVal = false;
+
+		retVal = performQuery(username, AccountDataColumnNames.USERNAME, rs -> {
+			boolean next = false;
+			
+			try {
+				next = rs.next();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return next;
+		});
+		
+		return retVal;
 	}
 	
-	private boolean isValuePresentInColumn(String value, String column) throws DatabaseException {
-		boolean retVal = false;
+	private <T> T performQuery(String value, String column, Function<ResultSet, T> func) 
+			throws DatabaseException {
 		
-		String sql = new StringBuilder().append("SELECT * FROM Account WHERE " + column + " = ?;").toString();
+		T retVal = null;
+		
+		String sql = new StringBuilder().append("SELECT * FROM Account WHERE ").append(column)
+				.append(" = ?;").toString();
 		
 		try {
 			Connection con = DriverManager.getConnection(DBConnection.CONNECTION_URL);
@@ -115,11 +146,9 @@ public class AccountDataAccessService implements AccountDaoIF {
 			try {
 				statement.setString(1, value);
 		            
-				ResultSet resultSet = statement.executeQuery();
+				ResultSet rs = statement.executeQuery();
 				
-		        if (resultSet.next()) {
-		        	retVal = true;
-		        }
+				retVal = func.apply(rs);
 
 			} catch (SQLException e1) {
 				System.out.println();
@@ -140,6 +169,64 @@ public class AccountDataAccessService implements AccountDaoIF {
 		}
 		
         return retVal;
+	}
+
+	@Override
+	public Account getAccountFromEmail(String email) throws DatabaseException {
+		Account retVal = null;
+		
+		retVal = performQuery(email, AccountDataColumnNames.EMAIL, rs -> {
+			Account account = null;
+			
+			try {
+				if (rs.next()) {
+					account = buildObject(rs);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return account;
+		});
+		
+		return retVal;
+	}
+
+	@Override
+	public Account getAccountFromUsername(String username) throws DatabaseException {
+		Account retVal = null;
+		
+
+		retVal = performQuery(username, AccountDataColumnNames.USERNAME, rs -> {
+			Account account = null;
+			
+			try {
+				if (rs.next()) {
+					account = buildObject(rs);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return account;
+		});
+		
+		return retVal;
+	}
+	
+	private Account buildObject(ResultSet rs) {
+		Account account = null;
+		try {
+			account = new Account(rs.getString(AccountDataColumnNames.FIRST_NAME),
+					rs.getString(AccountDataColumnNames.LAST_NAME),
+					rs.getString(AccountDataColumnNames.USERNAME),
+					rs.getString(AccountDataColumnNames.EMAIL));
+			account.setId(Utils.convertBytesToUUID(rs.getBytes(AccountDataColumnNames.ID)));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return account;
 	}
 
 }

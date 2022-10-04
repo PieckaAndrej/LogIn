@@ -25,6 +25,10 @@ public interface AccountDaoIF {
 		
 		return registerAccount(account, password, creationDateTime);
 	}
+	
+	Account getAccountFromEmail(String email) throws DatabaseException;
+	
+	Account getAccountFromUsername(String username) throws DatabaseException;
 
 	boolean isEmailPresent(String email) throws DatabaseException;
 

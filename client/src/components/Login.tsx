@@ -1,6 +1,7 @@
-import {Box, Button, Card, CardContent, TextField, Typography, useTheme} from "@mui/material";
-import {useState} from "react";
+import { Box, Button, Card, CardContent, TextField, Typography, useTheme } from "@mui/material";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { postLogin } from "../Api";
 
 const Login = () => {
 	const [info, setInfo] = useState({
@@ -19,6 +20,19 @@ const Login = () => {
 		})
 	}
 
+	const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+
+		const getResponse = async () => {
+			const response = await postLogin(info.name, info.password);
+
+			console.log(response);
+
+		};
+
+		getResponse();
+	}
+
 
 	return (
 		<Box className="form login">
@@ -27,7 +41,7 @@ const Login = () => {
 			</Typography>
 			<Card sx={{ overflowY: "auto" }} className="card">
 				<CardContent>
-					<form>
+					<form onSubmit={handleLogin}>
 						<Box className="card-container">
 							<TextField 
 								label="Email / Username" 

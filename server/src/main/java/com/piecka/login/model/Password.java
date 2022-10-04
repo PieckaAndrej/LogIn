@@ -1,11 +1,21 @@
 package com.piecka.login.model;
 
+import java.util.UUID;
+
 public class Password {
+	
+	private UUID id;
 	private String passwordHash;
 	private Account account;
 	
 	public Password(String passwordHash) {
 		this.passwordHash = passwordHash;
+	}
+	
+	public Password(String passwordHash, UUID id) {
+		this(passwordHash);
+		
+		this.id = id;
 	}
 	
 	/**
@@ -34,6 +44,14 @@ public class Password {
 	 */
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
 	}
 	
 }

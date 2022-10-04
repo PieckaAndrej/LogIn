@@ -21,6 +21,9 @@ public class Account {
 		this.email = email;
 	}
 	
+	public Account() {
+	}
+
 	/**
 	 * @return the username
 	 */

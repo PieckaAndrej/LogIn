@@ -1,4 +1,5 @@
-import {Button,
+import {
+	Button,
 	Card,
 	CardContent,
 	Checkbox,
@@ -17,8 +18,8 @@ import {Button,
 import {Box} from "@mui/system";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import {isIdAvailable, postAccount} from "../Api";
 import RegisterInfo from "../interfaces/RegisterInfo";
-import { isEmailAvailable, isUsernameAvailable, postAccount } from "../Api";
 
 
 const Register = () => {
@@ -79,7 +80,7 @@ const Register = () => {
 	// Check if email is not used already
 	useEffect(() => {
 		const checkEmail = async () => {
-			let response = await isEmailAvailable(info.email);
+			const response = await isIdAvailable(info.email);
 
 			if (response.data == error.emailTaken) {
 				handleError("emailTaken", !response.data);
@@ -100,7 +101,7 @@ const Register = () => {
 				handleError("shortUsername", true);
 
 			} else {
-				let response = await isUsernameAvailable(info.username);
+				const response = await isIdAvailable(info.username);
 
 				handleError("shortUsername", false);
 

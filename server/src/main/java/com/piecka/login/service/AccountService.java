@@ -38,10 +38,25 @@ public class AccountService {
 		return accountDao.registerAccount(account, password);
 	}
 	
-	public boolean checkLogin(String id, String password) {
+	public boolean checkLogin(String id, String password) throws DatabaseException {
 		boolean retVal = false;
 		
+		Account account = accountDao.getAccountFromEmail(id);
 		
+		if (account == null) {
+			account = accountDao.getAccountFromUsername(id);
+		}
+		
+		if (account != null) {
+			try {
+				Password pass = passwordService.getPasswordByID(account.getId());
+				
+				retVal = PasswordService.validatePassword(password, pass.getPasswordHash());
+				
+			} catch (DatabaseException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		return retVal;
 	}

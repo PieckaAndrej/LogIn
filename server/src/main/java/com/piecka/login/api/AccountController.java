@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.piecka.login.exceptions.DatabaseException;
 import com.piecka.login.exceptions.DuplicateEmailException;
 import com.piecka.login.exceptions.DuplicateUsernameException;
 import com.piecka.login.exceptions.ShortPasswordException;
 import com.piecka.login.exceptions.ShortUsernameException;
-import com.piecka.login.model.Account;
 import com.piecka.login.model.RegisterAccount;
 import com.piecka.login.service.AccountService;
 
@@ -73,48 +73,40 @@ public class AccountController {
 		return new ResponseEntity<>(Integer.valueOf(response), HttpStatus.CREATED);
 	}
 	
-	@PostMapping(path= "/login/{id}")
-	public ResponseEntity<Account> logIn(@PathVariable("id") String id, @RequestBody String password) {
-		Account account = null;
+	@PostMapping(path= "/login")
+	public ResponseEntity<Boolean> logIn(@RequestBody ObjectNode objectNode) {
+		boolean retVal = false;
 		
-		return new ResponseEntity<>(account, HttpStatus.CONTINUE);
+		String id = objectNode.get("id").asText();
+		String password = objectNode.get("password").asText();
+		
+		try {
+			retVal = accountService.checkLogin(id, password);
+			
+		} catch (DatabaseException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(retVal);
+		
+		return new ResponseEntity<>(Boolean.valueOf(retVal), HttpStatus.OK);
 	}
 	
 	/**
-	 * Check if email is available
-	 * @param email Email that is being checked
+	 * Check if id is available
+	 * @param id Id that is being checked
 	 * @return A boolean response
 	 */
-	@GetMapping(path = "/email/{email}")
-	public ResponseEntity<Boolean> isEmailAvailable(@PathVariable("email") String email) {
+	@GetMapping(path = "/id/{id}")
+	public ResponseEntity<Boolean> isIdAvailable(@PathVariable("id") String id) {
 		boolean isAvailable = false;
 		
 		try {
-			isAvailable = !accountService.isEmailPresent(email);
+			isAvailable = !(accountService.isEmailPresent(id) || accountService.isUsernamePresent(id));
 		} catch (DatabaseException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(Boolean.valueOf(isAvailable),
 					HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		
-		return new ResponseEntity<>(Boolean.valueOf(isAvailable), HttpStatus.OK);
-	}
-	
-	/**
-	 * Check if username is available
-	 * @param username Username that is being checked
-	 * @return A boolean response
-	 */
-	@GetMapping(path = "/username/{username}")
-	public ResponseEntity<Boolean> isUsernameAvailable(@PathVariable("username") String username) {
-		boolean isAvailable = false;
-		
-		try {
-			isAvailable = !accountService.isUsernamePresent(username);
-		} catch (DatabaseException e) {
-			e.printStackTrace();
-			
-			return new ResponseEntity<>(Boolean.valueOf(isAvailable), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		return new ResponseEntity<>(Boolean.valueOf(isAvailable), HttpStatus.OK);

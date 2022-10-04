@@ -23,7 +23,7 @@ GO
 
 CREATE TABLE dbo.[Password] (
 	passwordId BINARY(16) NOT NULL PRIMARY KEY,
-	passwordHash VARCHAR(128),
+	passwordHashSalt VARCHAR(128),
 	CONSTRAINT PasswordEmailFK
 	FOREIGN KEY (passwordId) REFERENCES Account(id)
 	ON DELETE CASCADE,
